@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.udacity.popularmovies.MovieDetail"
+    tools:showIn="@layout/activity_movie_detail">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TitleText"
+            android:textSize="@dimen/textSize"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/UserRatingShow"
+            android:text="User Rating :"
+            android:textSize="@dimen/textSize"
+            android:layout_below="@+id/TitleText"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/UserRatingText"
+            android:text="Hi2"
+            android:textSize="@dimen/textSize"
+            android:layout_below="@+id/TitleText"
+            android:layout_toRightOf="@+id/UserRatingShow"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ReleaseDateShow"
+            android:text="Release Date :"
+            android:textSize="@dimen/textSize"
+            android:layout_below="@+id/UserRatingShow"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RelaseDateText"
+            android:text="Hi3"
+            android:textSize="@dimen/textSize"
+            android:layout_toRightOf="@+id/ReleaseDateShow"
+            android:layout_below="@+id/UserRatingShow"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/OverviewShow"
+            android:text="Overview"
+            android:textSize="@dimen/textSize"
+            android:layout_below="@+id/ReleaseDateShow"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/OverviewText"
+        android:text="Hi"
+        android:textSize="@dimen/textSize"
+        android:layout_below="@+id/OverviewShow"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="16dp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/PosterPic"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="5dp"
+            android:layout_below="@+id/TitleText"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    </ScrollView>
+
+
+</android.support.v4.widget.NestedScrollView>
