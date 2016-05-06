@@ -8,31 +8,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
+import com.udacity.popularmovies.Utils.MovieUtils;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
-    RequestQueue requestQueue;
-    static String BASE_URL="http://api.themoviedb.org/3/movie/";
-    static String api_key="?api_key=";
-    static String BASE_MOVIE_URL="http://image.tmdb.org/t/p/w185/";
-
+    MovieDBHelper myDB;
     String[] movieposters;
     GridView gridView;
 
@@ -41,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        myDB=new MovieDBHelper(this);
+
         gridView=(GridView)findViewById(R.id.gridView);
 
-        requestQueue = Volley.newRequestQueue(MainActivity.this);
+        MovieUtils.requestQueue = Volley.newRequestQueue(MainActivity.this);
 
         MovieDetailReceive("popular");
 
@@ -52,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public void MovieDetailReceive(final String parturl)
     {
 
-        String mainurl=BASE_URL+parturl+api_key;
+        String mainurl=MovieUtils.BASE_MOVIE_URL+parturl+MovieUtils.API_KEY;
 
         JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, mainurl, new Response.Listener<JSONObject>() {
             @Override
@@ -63,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     movieposters= new String[moviedetail.length()];
                     for(int i=0;i<moviedetail.length();i++)
                     {
-                        movieposters[i]=BASE_MOVIE_URL+moviedetail.getJSONObject(i).getString("poster_path");
+                        movieposters[i]=MovieUtils.BASE_PICTURE_URL+MovieUtils.PICTURE_SIZE1+moviedetail.getJSONObject(i).getString("poster_path");
                     }
 
                     Movie_List_Implement adapter = new Movie_List_Implement(MainActivity.this,movieposters,moviedetail.length());
@@ -94,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        requestQueue.add(jsonObjectRequest);
+        MovieUtils.requestQueue.add(jsonObjectRequest);
 
     }
 

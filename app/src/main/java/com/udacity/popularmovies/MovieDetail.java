@@ -1,16 +1,11 @@
 package com.udacity.popularmovies;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import com.udacity.popularmovies.Utils.MovieUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,16 +21,16 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 public class MovieDetail extends AppCompatActivity {
 
     private static int movieid;
     private static String moviekind;
-    private RequestQueue requestQueue;
 
-    ImageView Poster,Backdrop;
-    TextView Overview,UserRating,ReleaseDate,Title;
+    FloatingActionButton fab;
+
+    private ImageView Poster,Backdrop;
+    private TextView Title,UserRating,ReleaseDate,Overview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +39,6 @@ public class MovieDetail extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Title=(TextView)findViewById(R.id.TitleText);
-        UserRating=(TextView)findViewById(R.id.UserRatingText);
-        ReleaseDate=(TextView)findViewById(R.id.RelaseDateText);
-        Overview=(TextView)findViewById(R.id.OverviewText);
-        Poster=(ImageView)findViewById(R.id.PosterPic);
-        Backdrop=(ImageView)findViewById(R.id.BackDrop);
-
-        requestQueue = Volley.newRequestQueue(MovieDetail.this);
-
         Bundle extra= getIntent().getExtras();
         if(extra!=null)
         {
@@ -60,11 +46,23 @@ public class MovieDetail extends AppCompatActivity {
             moviekind=extra.getString("Kind");
             setDetails(moviekind,movieid);
         }
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        Title=(TextView)findViewById(R.id.Title);
+        UserRating=(TextView)findViewById(R.id.UserRating);
+        ReleaseDate=(TextView)findViewById(R.id.ReleaseDate);
+        Overview=(TextView)findViewById(R.id.OverView);
+        Poster=(ImageView)findViewById(R.id.PosterPic);
+        Backdrop=(ImageView)findViewById(R.id.BackDrop);
+
+
+        MovieUtils.requestQueue = Volley.newRequestQueue(MovieDetail.this);
     }
 
     public void setDetails(String parturl,final int id)
     {
-        String mainurl=MainActivity.BASE_URL+parturl+MainActivity.api_key;
+        String mainurl= MovieUtils.BASE_MOVIE_URL+parturl+MovieUtils.API_KEY;
         JsonObjectRequest jsonObjectRequest= new JsonObjectRequest(Request.Method.POST, mainurl, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -73,13 +71,24 @@ public class MovieDetail extends AppCompatActivity {
                     JSONArray moviedetail=response.getJSONArray("results");
                     JSONObject moviesingledetail=moviedetail.getJSONObject(id);
 
+                    String movieid=moviesingledetail.getString("id");
+                    Toast.makeText(MovieDetail.this,movieid,Toast.LENGTH_SHORT).show();
                     Title.setText(moviesingledetail.getString("original_title"));
-                    UserRating.setText(moviesingledetail.getString("vote_average"));
-                    ReleaseDate.setText(moviesingledetail.getString("release_date"));
+                    UserRating.setText("User Rating: "+moviesingledetail.getString("vote_average"));
+                    ReleaseDate.setText("Release Date:"+moviesingledetail.getString("release_date"));
                     Overview.setText(moviesingledetail.getString("overview"));
-                    Picasso.with(MovieDetail.this).load(MainActivity.BASE_MOVIE_URL+moviesingledetail.getString("poster_path")).into(Poster);
+                    
+                    Picasso.with(MovieDetail.this).load(MovieUtils.BASE_PICTURE_URL+MovieUtils.PICTURE_SIZE1+moviesingledetail.getString("poster_path")).into(Poster);
+                    Picasso.with(MovieDetail.this).load(MovieUtils.BASE_PICTURE_URL+MovieUtils.PICTURE_SIZE2+moviesingledetail.getString("backdrop_path")).into(Backdrop);
 
-                    Picasso.with(MovieDetail.this).load("http://image.tmdb.org/t/p/w500/"+moviesingledetail.getString("backdrop_path")).into(Backdrop);
+                    fab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(MovieDetail.this,"Movie favourited",Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
                 }
                 catch (JSONException e)
                 {
@@ -95,6 +104,7 @@ public class MovieDetail extends AppCompatActivity {
             }
         });
 
-        requestQueue.add(jsonObjectRequest);
+        MovieUtils.requestQueue.add(jsonObjectRequest);
     }
+
 }
