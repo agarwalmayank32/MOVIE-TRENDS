@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.udacity.popularmovies.Utils.MovieUtils;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -22,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+
+    RequestQueue requestQueue1;
 
     MovieDBHelper myDB;
     String[] movieposters;
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         gridView=(GridView)findViewById(R.id.gridView);
 
-        MovieUtils.requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue1 = Volley.newRequestQueue(MainActivity.this);
 
         MovieDetailReceive("popular");
 
@@ -54,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
                 {
                     JSONArray moviedetail=response.getJSONArray("results");
                     movieposters= new String[moviedetail.length()];
+                    final String[] movieID = new String[moviedetail.length()];
+                    final String[] Title = new String[moviedetail.length()];
                     for(int i=0;i<moviedetail.length();i++)
                     {
+                        movieID[i] = moviedetail.getJSONObject(i).getString("id");
+                        Title[i] = moviedetail.getJSONObject(i).getString("original_title");
                         movieposters[i]=MovieUtils.BASE_PICTURE_URL+MovieUtils.PICTURE_SIZE1+moviedetail.getJSONObject(i).getString("poster_path");
                     }
 
@@ -64,9 +71,10 @@ public class MainActivity extends AppCompatActivity {
                     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Intent intent= new Intent(MainActivity.this,MovieDetail.class);
-                            intent.putExtra("Id",String.valueOf(i));
-                            intent.putExtra("Kind",parturl);
+                            Intent intent= new Intent(MainActivity.this,TabAdapter.class);
+                            intent.putExtra("movieID",movieID[i]);
+                            intent.putExtra("movieType",parturl);
+                            intent.putExtra("Title",Title[i]);
                             startActivity(intent);
                         }
                     });
@@ -87,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        MovieUtils.requestQueue.add(jsonObjectRequest);
+        requestQueue1.add(jsonObjectRequest);
 
     }
 
