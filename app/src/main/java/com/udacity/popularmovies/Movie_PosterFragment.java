@@ -70,7 +70,7 @@ public class Movie_PosterFragment extends Fragment {
                         movieposters[i]=MovieUtils.BASE_PICTURE_URL+MovieUtils.PICTURE_SIZE1+moviedetail.getJSONObject(i).getString("poster_path");
                     }
 
-                    Movie_List_Implement adapter = new Movie_List_Implement(getActivity(),movieposters,moviedetail.length());
+                    Movie_List_Implement adapter = new Movie_List_Implement(getActivity(),movieposters);
                     gridView.setAdapter(adapter);
                     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

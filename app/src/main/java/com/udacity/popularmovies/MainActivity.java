@@ -1,7 +1,6 @@
 package com.udacity.popularmovies;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         }else{
             isSinglePane = true;
             if(savedInstanceState == null){
-                //if's the first time created
                 Movie_PosterFragment movie_posterFragment = new Movie_PosterFragment();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.add(R.id.phone_container, movie_posterFragment);
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (count == 0) {
             super.onBackPressed();
-            //additional code
         } else {
             getFragmentManager().popBackStack();
         }
