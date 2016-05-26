@@ -93,4 +93,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_timepass">timepass</string>
+    <string name="title_activity_movie__poster">Movie_Poster</string>
 </resources>

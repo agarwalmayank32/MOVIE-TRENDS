@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TabAdapter"
-            android:label="@string/title_activity_movie_detail"
+            android:name=".Movie_Poster"
+            android:label="@string/title_activity_movie__poster"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
