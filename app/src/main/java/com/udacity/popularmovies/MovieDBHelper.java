@@ -6,18 +6,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MovieDBHelper extends SQLiteOpenHelper{
 
-    public static final int DATABASE_VERSION= 1;
+    public static final int DATABASE_VERSION= 2;
     public static final String DATABASE_NAME= "movie.db";
 
     final String CREATE_MOVIE_TABLE="CREATE TABLE " + MovieDBContract.MOVIE_ENTRY.TABLE_NAME + " ( "
-            + MovieDBContract.MOVIE_ENTRY.COLUMN_ID + " INTEGER PRIMARY AUTOINCREMENT,"
-            + MovieDBContract.MOVIE_ENTRY.COLUMN_MOVIE_ID + " INTEGER NOT NULL, "
-            + MovieDBContract.MOVIE_ENTRY.COLUMN_TITLE + " TEXT NOT NULL,"
-            + MovieDBContract.MOVIE_ENTRY.COLUMN_USER_RATING + " INTEGER NOT NULL, "
-            + MovieDBContract.MOVIE_ENTRY.COLUMN_RELEASE_DATE + " INTEGER NOT NULL, "
-            + MovieDBContract.MOVIE_ENTRY.COLUMN_OVERVIEW + " TEXT NOT NULL, "
-            + MovieDBContract.MOVIE_ENTRY.COLUMN_POSTER + " BLOB, "
-            + MovieDBContract.MOVIE_ENTRY.COLUMN_BACKDROP + " BLOB);";
+            + MovieDBContract.MOVIE_ENTRY.COLUMN_ID + " integer primary key autoincrement,"
+            + MovieDBContract.MOVIE_ENTRY.COLUMN_MOVIE_ID + " text not null, "
+            + MovieDBContract.MOVIE_ENTRY.COLUMN_TITLE + " text not null,"
+            + MovieDBContract.MOVIE_ENTRY.COLUMN_USER_RATING + " text not null, "
+            + MovieDBContract.MOVIE_ENTRY.COLUMN_RELEASE_DATE + " text not null, "
+            + MovieDBContract.MOVIE_ENTRY.COLUMN_OVERVIEW + " text not null, "
+            + MovieDBContract.MOVIE_ENTRY.COLUMN_POSTER + " text not null, "
+            + MovieDBContract.MOVIE_ENTRY.COLUMN_BACKDROP + " text not null);";
 
     public MovieDBHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);

@@ -2,6 +2,7 @@ package com.udacity.popularmovies;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -81,10 +82,9 @@ public class Movie_PosterFragment extends Fragment {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("movieID",movieID[i]);
                                 bundle.putString("movieType",parturl);
-                                bundle.putString("Title",Title[i]);
                                 myDetailFragment.setArguments(bundle);
                                 FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
-                                fragmentTransaction.replace(R.id.phone_container, myDetailFragment);
+                                fragmentTransaction.replace(R.id.phone_container1, myDetailFragment);
                                 fragmentTransaction.isAddToBackStackAllowed();
                                 fragmentTransaction.addToBackStack("movieDetail");
                                 fragmentTransaction.commit();
@@ -95,7 +95,6 @@ public class Movie_PosterFragment extends Fragment {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("movieID",movieID[i]);
                                 bundle.putString("movieType",parturl);
-                                bundle.putString("Title",Title[i]);
                                 myDetailFragment.setArguments(bundle);
                                 FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.detail_fragment, myDetailFragment);
@@ -137,18 +136,15 @@ public class Movie_PosterFragment extends Fragment {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.Popular)
-        {
+        if (id == R.id.Popular) {
             MovieDetailReceive("popular");
             return true;
         }
-        else if(id== R.id.TopRated)
-        {
+        else if (id == R.id.TopRated) {
             MovieDetailReceive("top_rated");
             return true;
-        }
-
+        } else if (id == R.id.Favourite)
+            startActivity(new Intent(getActivity(), Favourite.class));
         return super.onOptionsItemSelected(item);
     }
 }

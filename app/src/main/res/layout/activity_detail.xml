@@ -1,172 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff">
-<ScrollView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff">
+    <include layout="@layout/content_detail" />
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="160dp"
-            android:id="@+id/BackDrop"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:scaleType="centerCrop"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_favorite_not_selected"/>
 
-        <RelativeLayout
-            android:id="@+id/RelativeLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/BackDrop"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/roundedcorner">
-
-            <ImageView
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:id="@+id/PosterPic"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Captain America: Civil War "
-                android:id="@+id/Title"
-                android:layout_alignTop="@+id/PosterPic"
-                android:layout_toRightOf="@+id/PosterPic"
-                android:layout_toEndOf="@+id/PosterPic"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Release Date: 2016-04-07"
-                android:id="@+id/ReleaseDate"
-                android:layout_below="@+id/Title"
-                android:layout_alignLeft="@+id/Title"
-                android:layout_alignStart="@+id/Title"
-                android:layout_marginTop="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="User Rating: 6.6/10"
-                android:id="@+id/UserRating"
-                android:layout_below="@+id/ReleaseDate"
-                android:layout_alignLeft="@+id/ReleaseDate"
-                android:layout_alignStart="@+id/ReleaseDate"
-                android:layout_marginTop="5dp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/RelativeLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/RelativeLayout1"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/roundedcorner">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="OverView"
-                android:id="@+id/textView4"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Here the main overview of each movie is written"
-                android:id="@+id/OverView"
-                android:layout_below="@+id/textView4"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/RelativeLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_below="@+id/RelativeLayout2"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/roundedcorner">
-
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/listViewTrailer"
-                android:nestedScrollingEnabled="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/RelativeLayout4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/RelativeLayout3"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="75dp"
-            android:background="@drawable/roundedcorner">
-
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/listViewReview"
-                android:nestedScrollingEnabled="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-</ScrollView>
 </RelativeLayout>

@@ -3,26 +3,19 @@ package com.udacity.popularmovies;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
-
-    static boolean isSinglePane;
+public class Favourite extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_favourite);
 
-        View v = findViewById(R.id.phone_container1);
-        if(v == null){
-            isSinglePane = false;
-        }else{
-            isSinglePane = true;
-            if(savedInstanceState == null){
-                Movie_PosterFragment movie_posterFragment = new Movie_PosterFragment();
+        if (MainActivity.isSinglePane) {
+            if (savedInstanceState == null) {
+                Favourite_Poster favourite_poster = new Favourite_Poster();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.phone_container1, movie_posterFragment);
+                fragmentTransaction.add(R.id.phone_container2, favourite_poster);
                 fragmentTransaction.commit();
             }
         }

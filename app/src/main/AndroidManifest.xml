@@ -18,10 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Movie_Poster"
-            android:label="@string/title_activity_movie__poster"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Favourite" />
+
+        <provider
+            android:name=".MovieDBContentProvider"
+            android:authorities="com.udacity.popularmovies.MovieDBContentProvider"
+            android:exported="false"
+            android:multiprocess="true" />
+
+        <activity android:name=".Favorite_Details"></activity>
     </application>
 
 </manifest>
