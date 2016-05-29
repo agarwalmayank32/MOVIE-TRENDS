@@ -27,7 +27,7 @@ public class Favorite_Details extends Fragment {
         favBackDrop = (ImageView) view.findViewById(R.id.favBackDrop);
         favUser_Rating= (TextView)view.findViewById(R.id.favUserRating);
         favRelease_Date = (TextView)view.findViewById(R.id.favReleaseDate);
-        favOverview = (TextView)view.findViewById(R.id.OverView);
+        favOverview = (TextView)view.findViewById(R.id.favOverView);
 
 
         Bundle bundle = getArguments();
