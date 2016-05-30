@@ -23,10 +23,8 @@
         <provider
             android:name=".MovieDBContentProvider"
             android:authorities="com.udacity.popularmovies.MovieDBContentProvider"
-            android:exported="false"
+            android:exported="true"
             android:multiprocess="true" />
-
-        <activity android:name=".Favorite_Details"></activity>
     </application>
 
 </manifest>
