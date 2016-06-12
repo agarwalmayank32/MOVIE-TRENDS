@@ -26,10 +26,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class Movie_PosterFragment extends Fragment {
 
     RequestQueue requestQueue;
     String[] movieposters;
+    @InjectView(R.id.gridView)
     GridView gridView;
 
     @Override
@@ -38,12 +42,11 @@ public class Movie_PosterFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie__poster, container, false);
         setHasOptionsMenu(true);
 
-        gridView=(GridView)view.findViewById(R.id.gridView);
+        ButterKnife.inject(this,view);
 
         requestQueue = Volley.newRequestQueue(getActivity());
         MovieDetailReceive("popular");

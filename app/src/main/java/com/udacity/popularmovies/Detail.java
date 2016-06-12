@@ -31,6 +31,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class Detail extends Fragment {
 
     RequestQueue requestQueue,requestQueue1,requestQueue2;
@@ -39,9 +42,22 @@ public class Detail extends Fragment {
     String[] ReviewBy, Review;
     String posterpath,BackdropPath;
 
-    private ListView listViewReview,listViewTrailer;
-    private ImageView Poster,Backdrop;
-    private TextView Title,UserRating,ReleaseDate,Overview;
+    @InjectView(R.id.listViewReview)
+    ListView listViewReview;
+    @InjectView(R.id.listViewTrailer)
+    ListView listViewTrailer;
+    @InjectView(R.id.PosterPic)
+    ImageView Poster;
+    @InjectView(R.id.BackDrop)
+    ImageView Backdrop;
+    @InjectView(R.id.Title)
+    TextView Title;
+    @InjectView(R.id.UserRating)
+    TextView UserRating;
+    @InjectView(R.id.ReleaseDate)
+    TextView ReleaseDate;
+    @InjectView(R.id.OverView)
+    TextView Overview;
 
     private boolean mFavorited;
 
@@ -58,15 +74,7 @@ public class Detail extends Fragment {
             type = bundle.getString("movieType");
         }
 
-        listViewTrailer=(ListView)view.findViewById(R.id.listViewTrailer);
-        listViewReview=(ListView)view.findViewById(R.id.listViewReview);
-
-        Title=(TextView)view.findViewById(R.id.Title);
-        UserRating=(TextView)view.findViewById(R.id.UserRating);
-        ReleaseDate=(TextView)view.findViewById(R.id.ReleaseDate);
-        Overview=(TextView)view.findViewById(R.id.OverView);
-        Poster=(ImageView)view.findViewById(R.id.PosterPic);
-        Backdrop=(ImageView)view.findViewById(R.id.BackDrop);
+        ButterKnife.inject(this,view);
 
         requestQueue= Volley.newRequestQueue(getActivity());
         requestQueue1= Volley.newRequestQueue(getActivity());
@@ -162,6 +170,7 @@ public class Detail extends Fragment {
 
                     SingleTrailer trailer=new SingleTrailer(getActivity(),TrailerName);
                     listViewTrailer.setAdapter(trailer);
+
 
                     listViewTrailer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

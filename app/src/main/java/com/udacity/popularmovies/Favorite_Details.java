@@ -12,23 +12,30 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class Favorite_Details extends Fragment {
 
-    String Title,Poster,BackDrop,User_Rating,Release_Date,Overview;
-    TextView favTitle,favUser_Rating,favRelease_Date,favOverview;
-    ImageView favPoster,favBackDrop;
+    String Poster,BackDrop;
+    @InjectView(R.id.favTitle)
+    TextView favTitle;
+    @InjectView(R.id.favUserRating)
+    TextView favUser_Rating;
+    @InjectView(R.id.favReleaseDate)
+    TextView favRelease_Date;
+    @InjectView(R.id.favOverView)
+    TextView favOverview;
+    @InjectView(R.id.favPosterPic)
+    ImageView favPoster;
+    @InjectView(R.id.favBackDrop)
+    ImageView favBackDrop;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_favorite_details, container, false);
 
-        favTitle = (TextView)view.findViewById(R.id.favTitle);
-        favPoster = (ImageView) view.findViewById(R.id.favPosterPic);
-        favBackDrop = (ImageView) view.findViewById(R.id.favBackDrop);
-        favUser_Rating= (TextView)view.findViewById(R.id.favUserRating);
-        favRelease_Date = (TextView)view.findViewById(R.id.favReleaseDate);
-        favOverview = (TextView)view.findViewById(R.id.favOverView);
-
+        ButterKnife.inject(this,view);
 
         Bundle bundle = getArguments();
         if(bundle != null){
@@ -53,20 +60,15 @@ public class Favorite_Details extends Fragment {
                 int mid = Integer.parseInt(cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_MOVIE_ID)));
                 if(mid==Integer.parseInt(movieID))
                 {
-                    Title = cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_TITLE));
+                    favTitle.setText(cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_TITLE)));
                     Poster = cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_POSTER));
                     BackDrop = cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_BACKDROP));
-                    User_Rating = cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_USER_RATING));
-                    Release_Date = cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_RELEASE_DATE));
-                    Overview = cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_OVERVIEW));
+                    favUser_Rating.setText(cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_USER_RATING)));
+                    favRelease_Date.setText(cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_RELEASE_DATE)));
+                    favOverview.setText(cursor.getString(cursor.getColumnIndex(MovieDBContract.MOVIE_ENTRY.COLUMN_OVERVIEW)));
 
-                    favTitle.setText(Title);
-                    favRelease_Date.setText(Release_Date);
-                    favUser_Rating.setText(User_Rating);
-                    favOverview.setText(Overview);
                     Picasso.with(getActivity()).load(Poster).into(favPoster);
                     Picasso.with(getActivity()).load(BackDrop).into(favBackDrop);
-
                     break;
                 }
             }while (cursor.moveToNext());
