@@ -45,7 +45,6 @@ public class Movie_PosterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie__poster, container, false);
         setHasOptionsMenu(true);
-
         ButterKnife.inject(this,view);
 
         requestQueue = Volley.newRequestQueue(getActivity());

@@ -114,14 +114,11 @@ public class Detail extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(JSONObject response) {
-                try
-                {
+                try {
                     JSONArray moviedetail=response.getJSONArray("results");
-                    for(int i=0;i<moviedetail.length();i++)
-                    {
+                    for(int i=0;i<moviedetail.length();i++) {
                         JSONObject moviesingledetail=moviedetail.getJSONObject(i);
-                        if(moviesingledetail.getString("id").equals(String.valueOf(movieid)))
-                        {
+                        if(moviesingledetail.getString("id").equals(String.valueOf(movieid))) {
                             Title.setText(moviesingledetail.getString("original_title"));
                             UserRating.setText("User Rating: "+moviesingledetail.getString("vote_average"));
                             ReleaseDate.setText("Release Date:"+moviesingledetail.getString("release_date"));
