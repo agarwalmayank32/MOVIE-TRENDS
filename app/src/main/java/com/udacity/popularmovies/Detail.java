@@ -114,7 +114,8 @@ public class Detail extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(JSONObject response) {
-                try {
+                try
+                {
                     JSONArray moviedetail=response.getJSONArray("results");
                     for(int i=0;i<moviedetail.length();i++) {
                         JSONObject moviesingledetail=moviedetail.getJSONObject(i);
