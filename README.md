@@ -16,6 +16,10 @@ Most of us can relate to kicking back on the couch and enjoying a movie with fri
   * A plot synopsis
   * Average user rating
   * Release date
+ - Allows the user to view and play trailers ( either in the youtube app or a web browser).
+ - Allows the user to read reviews of a selected movie.
+ - Allows the user to mark a movie as a favorite in the details view by tapping a button(star). This is for a local movies collection that will be maintained and does not require an API request.
+ 
 
 ## Why this Project ?
 
