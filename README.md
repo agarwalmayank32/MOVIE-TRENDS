@@ -1,10 +1,9 @@
 # Popular Movies
 
 ## Project Overview
-Most of us can relate to kicking back on the couch and enjoying a movie with friends and family.
-In this project,i have build an app to allow users to discover the most popular movies playing.
+Most of us can relate to kicking back on the couch and enjoying a movie with friends and family. This app allow users to discover the most popular movies playing.
 
-My App
+This application
 - Present the user with a grid arrangement of movie posters upon launch.
 - Allows the user to change sort order via a setting.
   * Order by most popular
