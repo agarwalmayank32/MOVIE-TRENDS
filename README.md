@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Most of us can relate to kicking back on the couch and enjoying a movie with friends and family. This app allow users to discover the most popular movies playing.
+Most of us can relate to kicking back on the couch and enjoying a movie with friends and family. This app allow users to discover the most popular movies playing. This is Project-1 & Project-2 of Udacity's Android Developer Nanodegree.
 
 ## Features of the Application
 
