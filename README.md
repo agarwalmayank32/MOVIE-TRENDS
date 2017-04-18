@@ -1,4 +1,4 @@
-# Popular Movies
+# Movie Trends
 
 ## Project Overview
 
